@@ -1,0 +1,97 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Hóa đơn <small>Danh sách hóa đơn</small></h3>
+  </div>
+
+  <div class="title_right">
+
+
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+
+  <div class="clearfix"></div>
+
+  <div class="x_panel">
+    <div class="x_content">
+      <div class="x_title">
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+          <input type="text" name="startDate" daterangepicker [options]="dateOptions"
+            (selected)="changeStartDate($event)" [(ngModel)]="filterStartDate" class="form-control"
+            placeholder="Từ ngày">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group ">
+          <input type="text" name="endDate" daterangepicker [options]="dateOptions" (selected)="changeEndDate($event)"
+            [(ngModel)]="filterEndDate" class="form-control" placeholder="Đến ngày">
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group ">
+          <input type="text" name="customerName" #customerName="ngModel" [(ngModel)]="filterCustomerName"
+            class="form-control" placeholder="Tên khách hàng">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group ">
+          <select class="form-control" name="filterPaymentStatus" [(ngModel)]="filterPaymentStatus">
+            <option value="">--Tất cả--</option>
+            <option value="true">Đồng bộ</option>
+            <option value="false">Chưa đồng bộ</option>
+          </select>
+        </div>
+        <div class="col-md-4 col-sm-3 col-xs-12 form-group">
+          <button class="btn btn-primary" type="button" (click)="search()">Tìm</button>
+          <button class="btn btn-default" type="button" (click)="reset()">Reset</button>
+          <button class="btn btn-default" type="button" (click)="saveData()">Đồng bộ</button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <table *ngIf="orders && orders.length > 0" class="table table-bordered">
+        <thead>
+          <tr>
+            <th><input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll($event)" [ngModelOptions]="{standalone: true}"></th>
+            
+            <th>Tên khách hàng</th>
+            <td>Ngày tạo</td>
+            <td>Trạng thái</td>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of customer">
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" [(ngModel)]="item.Checked" [name]="item.OrderId"
+                    [ngModelOptions]="{standalone: true}" (change)="FieldsChange($event,item.OrderId)">
+                </label>
+              </div>
+            </td>
+            <td>{{item.CustomerName}}</td>
+            <td>{{item.CreatedDate | date}}</td>
+            <td *ngIf="item.Status==true">Đồng bộ</td>
+            <td *ngIf="item.Status==false">Chưa đồng bộ</td>
+            <td>
+              <a class="btn btn-primary" routerLink="/main/order/detail/{{item.OrderId}}" data-toggle="tooltip"
+                data-placement="top" *ngIf="_authenService.hasPermission('ORDER','update')"> <i
+                  class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div *ngIf="orders && orders.length == 0" class="col-md-12">
+        <div class="alert alert-info">
+          <strong>Thông báo!</strong> Hiện tại chưa có hóa đơn nào trong hệ thống
+        </div>
+
+      </div>
+      <div *ngIf="orders && orders.length > 0" class="col-md-12">
+        <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)"
+          [totalItems]="totalRow" [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

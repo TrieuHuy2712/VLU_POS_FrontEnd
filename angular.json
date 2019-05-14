@@ -23,9 +23,25 @@
               "src/assets"
             ],
             "styles": [
+              "../tedushop-admin2/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "../tedushop-admin2/node_modules/font-awesome/css/font-awesome.css",
+              "../tedushop-admin2/node_modules/animate.css/animate.css",
+              "../tedushop-admin2/node_modules/alertifyjs/build/css/alertify.css",
+              "../tedushop-admin2/node_modules/alertifyjs/build/css/themes/default.css",
+              "../tedushop-admin2/src/assets/css/custom.css",
+              "../tedushop-admin2/node_modules/angular-tree-component/dist/angular-tree-component.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "../tedushop-admin2/node_modules/jquery/dist/jquery.min.js",
+              "../tedushop-admin2/node_modules/popper.js/dist/umd/popper.min.js",
+              "../tedushop-admin2/node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "../tedushop-admin2/node_modules/fastclick/lib/fastclick.js",
+              "../tedushop-admin2/node_modules/alertifyjs/build/alertify.js",
+              "../tedushop-admin2/node_modules/nprogress/nprogress.js",
+              "../tedushop-admin2/node_modules/moment/moment.js",
+              "../tedushop-admin2/node_modules/chart.js/dist/chart.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
