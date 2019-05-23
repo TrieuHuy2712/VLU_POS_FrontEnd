@@ -44,7 +44,7 @@ export class OrderAddComponent implements OnInit {
     PhoneNumber: 0,
     Roles: 0,
     Status: 0,
-
+    POS:0,
   };
 
 
@@ -104,6 +104,7 @@ export class OrderAddComponent implements OnInit {
         this.detailCustomerEntity.PhoneNumber = response.PhoneNumber;
         this.detailCustomerEntity.Roles = response.Roles;
         this.detailCustomerEntity.Status = response.Status;
+        this.detailCustomerEntity.POS= response.POS;
       });
   }
 

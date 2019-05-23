@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../../core/services/data.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { SystemConstants } from '../../../core/common/system.constants';
 declare var moment: any;
 @Component({
   selector: 'app-revenue',
@@ -17,6 +18,7 @@ export class RevenueComponent implements OnInit {
     alwaysShowCalendars: false,
     singleDatePicker: true
   };
+  public currentPOS: number;
   constructor(private _dataService: DataService) {
   }
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
@@ -26,7 +28,7 @@ export class RevenueComponent implements OnInit {
     { data: [], label: 'Doanh thu' }
   ];
   public lineChartLabels: Array<any> = [];
-  
+
   public lineChartOptions: any = {
     responsive: true
   };
@@ -82,33 +84,58 @@ export class RevenueComponent implements OnInit {
     });
   }
   public changeStartDate(value: any) {
-    this.fromDate= moment(new Date(value.end._d)).format('DD/MM/YYYY');
+    this.fromDate = moment(new Date(value.end._d)).format('DD/MM/YYYY');
   }
   public changeEndDate(value: any) {
     this.toDate = moment(new Date(value.end._d)).format('DD/MM/YYYY');
   }
   loadRevenues() {
-    this._dataService.get('/api/statistic/getrevenue?fromDate=' + this.fromDate + '&toDate=' + this.toDate)
-      .subscribe((response: any[]) => {
-        console.log(response);
-        this.lineChartLabels = [];
-        this.lineChartData = [];
-        //var revenue = { data: [], label: 'Doanh thu' };
-        var benefit = { data: [], label: 'Lợi nhuận' };
-        this.tableData = [];
-        for (let item of response) {
-          //revenue.data.push(item.Benefit);
-          benefit.data.push(item.Revenues);
-          this.lineChartLabels.push(moment(item.Date).format('DD/MM/YYYY'));
-          //push to table
-          this.tableData = response;
+    this.currentPOS = parseInt(SystemConstants.current_POS);
+    if (this.currentPOS == 0) {
+      this._dataService.get('/api/headstatistic/getrevenue?fromDate=' + this.fromDate + '&toDate=' + this.toDate)
+        .subscribe((response: any[]) => {
+          console.log(response);
+          this.lineChartLabels = [];
+          this.lineChartData = [];
+          //var revenue = { data: [], label: 'Doanh thu' };
+          var benefit = { data: [], label: 'Lợi nhuận' };
+          this.tableData = [];
+          for (let item of response) {
+            //revenue.data.push(item.Benefit);
+            benefit.data.push(item.Revenues);
+            this.lineChartLabels.push(moment(item.Date).format('DD/MM/YYYY'));
+            //push to table
+            this.tableData = response;
 
-        }
-        //this.lineChartData.push(revenue);
-        this.lineChartData.push(benefit);
+          }
+          //this.lineChartData.push(revenue);
+          this.lineChartData.push(benefit);
 
-        this.refreshChart();
-      });
+          this.refreshChart();
+        });
+    } else {
+      this._dataService.get('/api/statistic/getrevenue?fromDate=' + this.fromDate + '&toDate=' + this.toDate)
+        .subscribe((response: any[]) => {
+          console.log(response);
+          this.lineChartLabels = [];
+          this.lineChartData = [];
+          //var revenue = { data: [], label: 'Doanh thu' };
+          var benefit = { data: [], label: 'Lợi nhuận' };
+          this.tableData = [];
+          for (let item of response) {
+            //revenue.data.push(item.Benefit);
+            benefit.data.push(item.Revenues);
+            this.lineChartLabels.push(moment(item.Date).format('DD/MM/YYYY'));
+            //push to table
+            this.tableData = response;
+
+          }
+          //this.lineChartData.push(revenue);
+          this.lineChartData.push(benefit);
+
+          this.refreshChart();
+        });
+    }
 
   }
 

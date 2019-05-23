@@ -64,8 +64,11 @@ export class ProductComponent implements OnInit {
   public search() {
     this._dataService.get('/api/product/getall?page=' + this.pageIndex + '&pageSize=' + this.pageSize + '&keyword=' + this.filterKeyword + '&categoryId=' + this.filterCategoryID)
       .subscribe((response: any) => {
+        console.log(response);
         this.products = response.Items;
         this.pageIndex = response.PageIndex;
+        this.pageSize = response.PageSize;
+        this.totalRow = response.TotalRows;
       }, error => this._dataService.handleError(error));
   }
   public reset() {

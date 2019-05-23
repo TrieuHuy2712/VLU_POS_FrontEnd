@@ -120,10 +120,11 @@ export class UserComponent implements OnInit {
     }
   }
   private saveData() {
-    if(this.currentPOS !=0){
-      this.entity.POS= this.currentPOS;
-    }
+
     if (this.entity.Id == undefined) {
+      if(this.currentPOS !=0){
+        this.entity.POS= this.currentPOS;
+      }
       this.entity.BonusPoint= 0;
       this._dataService.post('/api/appUser/add', this.entity)
         .subscribe((response: any) => {
