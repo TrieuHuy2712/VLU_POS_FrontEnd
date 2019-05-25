@@ -120,7 +120,7 @@ export class OrderAddComponent implements OnInit {
     this.detailCustomerEntity.BirthDay = moment(new Date(this.detailCustomerEntity.BirthDay)).format('DD/MM/YYYY');
     if (this.entity.PaymentMethod == "BONUSPOINT") {
       if (this.totalAmount <= (this.detailCustomerEntity.BonusPoint * 100)) {
-        this.detailCustomerEntity.BonusPoint = this.detailCustomerEntity.BonusPoint - this.totalAmount;
+        this.detailCustomerEntity.BonusPoint = (this.detailCustomerEntity.BonusPoint*100) - this.totalAmount;
       } else {
         this.notificationService.printErrorMessage(MessageConstants.NOT_ENOUGH_MONEY);
         validate = false;

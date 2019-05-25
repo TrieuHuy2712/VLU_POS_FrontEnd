@@ -35,6 +35,7 @@ export class FunctionComponent implements OnInit {
     this._dataService.get('/api/appRole/getAllPermission?functionId=' + id).subscribe((response: any[]) => {
       this.functionId = id;
       this._permission = response;
+      console.log(response);
       this.permissionModal.show();
     }, error => this._dataService.handleError(error));
 

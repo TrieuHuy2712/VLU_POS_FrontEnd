@@ -10,7 +10,7 @@ import { MessageConstants } from '../../core/common/message.constants';
 import { SystemConstants } from '../../core/common/system.constants';
 import { UrlConstants } from '../../core/common/url.constants';
 import { Router } from '@angular/router';
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 declare var moment: any;
 
 @Component({
@@ -86,7 +86,8 @@ export class UserComponent implements OnInit {
           this.myRoles.push(role);
         }
         this.entity.BirthDay = moment(new Date(this.entity.BirthDay)).format('DD/MM/YYYY');
-
+        console.log(this.allRoles);
+        console.log(this.myRoles);
         console.log(this.entity);
       });
   }

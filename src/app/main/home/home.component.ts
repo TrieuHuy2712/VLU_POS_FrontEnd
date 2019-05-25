@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.currentPOS== parseInt(SystemConstants.current_POS);
+    this.currentPOS= parseInt(SystemConstants.current_POS);
   }
 
 }

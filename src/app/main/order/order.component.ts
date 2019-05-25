@@ -61,6 +61,9 @@ export class OrderComponent implements OnInit {
       + '&endDate=' + this.filterEndDate + '&customerName=' + this.filterCustomerNames
       + '&paymentStatus=' + this.filterPaymentStatus)
       .subscribe((response: any) => {
+        this.pageIndex = response.PageIndex;
+        this.pageSize = response.PageSize;
+        this.totalRow = response.TotalRows;
         this.orders = response.Items;
         this.customer = [];
         console.log(this.orders);
@@ -93,6 +96,9 @@ export class OrderComponent implements OnInit {
       + '&paymentStatus=' + this.filterPaymentStatus)
       .subscribe((response: any) => {
         this.orders = response.Items;
+        this.pageIndex = response.PageIndex;
+        this.pageSize = response.PageSize;
+        this.totalRow = response.TotalRows;
         this.customer = [];
         console.log(this.orders);
         for (let i = 0; i < this.orders.length; i++) {

@@ -49,6 +49,7 @@ export class RoleComponent implements OnInit {
   }
   showEditModal(id: any) {
     this.loadRole(id);
+    console.log(id);
     this.modalAddEdit.show();
   }
   saveChange(valid: boolean) {

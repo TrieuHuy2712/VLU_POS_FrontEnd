@@ -54,7 +54,7 @@ export class MainSynchComponent implements OnInit {
     this.search();
   }
   public search() {
-    this._dataService.get('/api/Order/getlistpaging?page=' + this.pageIndex
+    this._dataService.get('/api/order/getlistpaging?page=' + this.pageIndex
       + '&pageSize=' + this.pageSize + '&startDate=' + this.filterStartDate
       + '&endDate=' + this.filterEndDate + '&customerName=' + this.filterCustomerNames
       + '&paymentStatus=' + this.filterPaymentStatus)
