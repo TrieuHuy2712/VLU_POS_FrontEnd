@@ -29,7 +29,7 @@
     "fastclick": "^1.0.6",
     "font-awesome": "^4.7.0",
     "gentelella": "^1.4.0",
-    "jquery": "^2.2.3",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "ng2-charts": "^2.2.3",
     "ng2-daterangepicker": "^2.0.12",
