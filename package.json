@@ -30,7 +30,7 @@
     "font-awesome": "^4.7.0",
     "gentelella": "^1.4.0",
     "jquery": "^2.2.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng2-charts": "^2.2.3",
     "ng2-daterangepicker": "^2.0.12",
     "ng2-select2": "^1.0.0-beta.16",
